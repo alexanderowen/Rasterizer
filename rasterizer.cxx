@@ -1,3 +1,10 @@
+/* Author: Alexander Owen
+ * 
+ * Rasterizer for .vtk Polydata files 
+ * Outputs a .png to the 'images' directory
+ *
+ * */
+
 #include <iostream>
 #include <cmath>
 #include <vtkDoubleArray.h>
@@ -691,7 +698,7 @@ class Matrix
 };
 
 
-
+/* Class representing the camera. Includes information about position, angle, ...*/
 class Camera
 {
   public:
@@ -729,7 +736,8 @@ class Camera
         c[3][1] = position[1];
         c[3][2] = position[2];
     }
-
+    
+    /* Generates the view transformation matrix */
     Matrix viewTransform() 
     {
         Matrix m;
@@ -752,6 +760,7 @@ class Camera
         return m;
     }
 
+    /* Generates the camera transformation matrix */
     Matrix CameraTransform() 
     {
         double c[4][3];
@@ -786,6 +795,7 @@ class Camera
         return m;
     }
 
+    /* Generates the device transformation matrix */
     Matrix deviceTransform(double height, double width) 
     {
         Matrix m;
